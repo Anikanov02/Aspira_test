@@ -1,0 +1,5 @@
+parser:
+  leonbets:
+    baseUrl: https://leonbets.com
+    sports: socker,tennis,basketball,hockey
+    positionsToCheck: 1
