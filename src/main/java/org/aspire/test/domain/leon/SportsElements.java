@@ -7,9 +7,9 @@ import java.util.Arrays;
 @Getter
 public enum SportsElements {
     SPORT_ALL("all", "swiper-slide sport-event-list-filter__slide"),
-    SPORT_SOCKER_ICON("socker", "sport-event-list-filter__item-icon--soccer"),
+    SPORT_SOCKER_ICON("soccer", "sport-event-list-filter__item-icon--soccer"),
     SPORT_BASKETBALL_ICON("basketball", "sport-event-list-filter__item-icon--basketball"),
-    SPORT_HOCKEY_ICON("hockey", "sport-event-list-filter__item-icon--icehockey"),
+    SPORT_HOCKEY_ICON("icehockey", "sport-event-list-filter__item-icon--icehockey"),
     SPORT_TENNIS_ICON("tennis", "sport-event-list-filter__item-icon--tennis");
 
     private String sportName;

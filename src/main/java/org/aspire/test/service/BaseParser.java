@@ -3,6 +3,7 @@ package org.aspire.test.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -12,9 +13,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
+import java.util.List;
 
 @Slf4j
-public class BaseParser {
+public abstract class BaseParser {
     public Document load(String url) {
         try {
             return Jsoup.connect(url).get();
@@ -24,7 +26,7 @@ public class BaseParser {
     }
 
     public JsonNode sendRequest(String url) {
-        final HttpClient httpClient = HttpClients.createDefault();
+        final HttpClient httpClient = HttpClients.custom().setDefaultHeaders(headers()).build();
         final HttpGet httpGet = new HttpGet(url);
         final HttpResponse response;
         try {
@@ -41,4 +43,6 @@ public class BaseParser {
             throw new RuntimeException(e);
         }
     }
+
+    protected abstract List<Header> headers();
 }

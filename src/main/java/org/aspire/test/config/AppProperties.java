@@ -1,23 +1,26 @@
 package org.aspire.test.config;
 
-import lombok.Getter;
+import lombok.Data;
 import org.aspire.test.domain.leon.SportsElements;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-@Getter
+@Data
+@ConfigurationProperties("parser")
 public class AppProperties {
-    @Value(value = "${parser.leonbets.positionsToCheck:0}")
-    private Integer positionsToCheck;
-    @Value("${parser.leonbets.baseUrl}")
-    private String leonbetsBaseUrl;
-    private List<SportsElements> sportsToParse;
+    public LeonBets leonBets;
 
-    @Value("${parser.leonbets.sports}")
-    public void setSportsToParse(List<String> shortNames) {
-        sportsToParse = shortNames.stream().map(SportsElements::fromShortName).toList();
+    @Data
+    public static class LeonBets {
+        private Integer positionsToCheck = 0;
+        private String baseUrl;
+        private List<SportsElements> sports;
+
+        public void setSports(List<String> shortNames) {
+            sports = shortNames.stream().map(SportsElements::fromShortName).toList();
+        }
     }
 }

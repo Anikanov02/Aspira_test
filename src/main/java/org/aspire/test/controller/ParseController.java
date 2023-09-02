@@ -17,8 +17,11 @@ public class ParseController {
     public void parse() {
         final LeonBetsTopLeaguesParserResult result;
         try {
+            long time = System.currentTimeMillis();
+            shell.println("Started counting time");
             result = parser.parse();
             shell.println(result.toString());
+            shell.println(String.format("executed in %d seconds", (System.currentTimeMillis() - time) / 1000));
         } catch (Exception e) {
             shell.error(e.getMessage());
         }
