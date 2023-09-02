@@ -9,22 +9,12 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 import java.util.List;
 
 @Slf4j
 public abstract class BaseParser {
-    public Document load(String url) {
-        try {
-            return Jsoup.connect(url).get();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public JsonNode sendRequest(String url) {
         final HttpClient httpClient = HttpClients.custom().setDefaultHeaders(headers()).build();
         final HttpGet httpGet = new HttpGet(url);

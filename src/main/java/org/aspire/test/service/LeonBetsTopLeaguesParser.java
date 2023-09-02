@@ -38,8 +38,8 @@ public class LeonBetsTopLeaguesParser extends BaseParser {
                         return true;
                     } else {
                         return properties.getLeonBets().getSports().stream().anyMatch(acceptable ->
-                                acceptable.getSportName().equalsIgnoreCase(sport.get("name").asText())
-                                        || acceptable.getSportName().equalsIgnoreCase(sport.get("family").asText()));
+                                acceptable.getName().equalsIgnoreCase(sport.get("name").asText())
+                                        || acceptable.getName().equalsIgnoreCase(sport.get("family").asText()));
                     }
                 })
                 .map(sport -> pool.submit(new RecursiveTask<LeonBetsTopLeaguesParserResult.Sport>() {

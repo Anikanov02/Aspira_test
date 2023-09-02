@@ -6,21 +6,19 @@ import java.util.Arrays;
 
 @Getter
 public enum SportsElements {
-    SPORT_ALL("all", "swiper-slide sport-event-list-filter__slide"),
-    SPORT_SOCKER_ICON("soccer", "sport-event-list-filter__item-icon--soccer"),
-    SPORT_BASKETBALL_ICON("basketball", "sport-event-list-filter__item-icon--basketball"),
-    SPORT_HOCKEY_ICON("icehockey", "sport-event-list-filter__item-icon--icehockey"),
-    SPORT_TENNIS_ICON("tennis", "sport-event-list-filter__item-icon--tennis");
+    SPORT_ALL("all"),
+    SPORT_SOCKER_ICON("soccer"),
+    SPORT_BASKETBALL_ICON("basketball"),
+    SPORT_HOCKEY_ICON("icehockey"),
+    SPORT_TENNIS_ICON("tennis");
 
-    private String sportName;
-    private String className;
+    private String name;
 
-    SportsElements(String shortName, String className) {
-        this.sportName = shortName;
-        this.className = className;
+    SportsElements(String name) {
+        this.name = name;
     }
 
     public static SportsElements fromShortName(String shortName) {
-        return Arrays.stream(values()).filter(value -> value.getSportName().equalsIgnoreCase(shortName)).findFirst().orElse(null);
+        return Arrays.stream(values()).filter(value -> value.getName().equalsIgnoreCase(shortName)).findFirst().orElse(null);
     }
 }
